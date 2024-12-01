@@ -12,12 +12,13 @@ public class Tree {
     }
     public void insert(int value){
         if (root != null) {
-          insert(root, value);  
+            insert(root, value);  
+            root = balanc(root);
         }else{
             root = new Node();
             root.value = value;
            }
-        
+        root.color = Color.BLACK;
     }
     enum Color{
         BLACK,
@@ -28,14 +29,22 @@ public class Tree {
             if(node.value < value){
                 if(node.right == null){
                     node.right = new Node();
-                    node.right.value = value;}else{
-                        insert(node.right, value);}
+                    node.right.value = value;
+                    node.right.color = Color.RED;
+                }else{
+                        insert(node.right, value);
+                        node.right = balanc(node.right);
+                    }
                 }
             }else{
                 if(node.left == null){
                     node.left = new Node();
-                    node.left.value = value;}else{
-                        insert(node.left, value);}
+                    node.left.value = value;
+                    node.right.color = Color.RED;
+                }else{
+                        insert(node.left, value);
+                    node.left = balanc(node.left);
+                    }
             }
         }
     public Node find(int value){
