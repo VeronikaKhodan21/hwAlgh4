@@ -103,6 +103,19 @@ public class Tree {
         }while (flag);
         return  cur;
     }
+    private void print(Node node, int deep){
+        if(node == null){
+            return;
+        }
+        print(node.left, deep + 4);
+
+        for (int i = 0; i < deep; i++)
+            System.out.print(" ");
+            System.out.println("* value: "+ node.value + ", color: "+ node.color);
+    
+        print(node.right, deep + 4);
+    }
+    public void print(){
+        print(root, 0);
+    }
 }
-
-
